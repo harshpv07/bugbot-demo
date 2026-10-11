@@ -17,8 +17,9 @@ def index():
 
 @app.route("/checkout")
 def checkout():
-    # The bug: divide by the number of payment methods, which is empty.
     payment_methods = []
+    if not payment_methods:
+        return "No payment methods available", 400
     fee = 100 / len(payment_methods)
     return f"Checkout complete, fee: {fee}"
 
