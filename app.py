@@ -17,9 +17,11 @@ def index():
 
 @app.route("/checkout")
 def checkout():
-    # The bug: divide by the number of payment methods, which is empty.
     payment_methods = []
-    fee = 100 / len(payment_methods)
+    if payment_methods:
+        fee = 100 / len(payment_methods)
+    else:
+        fee = 0
     return f"Checkout complete, fee: {fee}"
 
 if __name__ == "__main__":
